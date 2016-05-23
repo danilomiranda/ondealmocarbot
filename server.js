@@ -15,15 +15,22 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
   var fromId = msg.from.id;
   var expression = match[1];
   var resp = '';
+  var const HOST = 'Host: ';
+  var const SERVICE = 'Service: ';
+  var const USER = 'User: ';
   switch (expression) {
-    case 'quem sou eu?':
-      resp = 'Um nerd sem demanda provavelmente.';
+    case 'prod mvs':
+      bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
+      bot.sendMessage(fromId, SERVICE+'mvs');
+      bot.sendMessage(fromId, USER+'webapp');
       break;
-    case 'como assim?':
-      resp = 'Marcio, arruma uma demanda para esse jovem.';
+    case 'prod relo':
+      bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
+      bot.sendMessage(fromId, SERVICE+'relo');
+      bot.sendMessage(fromId, USER+'webapp');
       break;
     default:
-      resp = 'ninguem';
+      resp = 'Digite o ambiente (dese, homol, prod) seguido do service.';
   }
   bot.sendMessage(fromId, resp);
 });
@@ -35,3 +42,7 @@ bot.on('message', function (msg) {
   var photo = 'cats.png';
   bot.sendMessage(fromId, 'teste');
 });
+
+function sendMessageCuston(chatId, label, info){
+  bot.sendMessage(chatId, label+info);
+}
