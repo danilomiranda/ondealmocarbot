@@ -1,5 +1,6 @@
 var TelegramBot = require('node-telegram-bot-api');
-
+var graph = require('fbgraph');
+graph.setAccessToken("EAAQQh0kZBgikBAGZA3PntU3QNACHUJ96AIpbI0BhKE6nMtUeEmkrjdlR3x8HQj67vOZAiphop4FwLhP6IamsT5eibt5tpqlx0guL6Ie7ZBtZAzXbleXb1QexNMu19bE3mnpAYaHYvsdlXZAFwKbqsakxQpdijzJvGkqJ6AvaJyAGPFQLy6x9Fs");
 var token = '222456534:AAEQr44fRiX1I6GXcxZYctTJ_25hp5gNJ7U';
 // See https://developers.openshift.com/en/node-js-environment-variables.html
 var port = process.env.OPENSHIFT_NODEJS_PORT;
@@ -10,9 +11,19 @@ var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
 // OpenShift enroutes :443 request to OPENSHIFT_NODEJS_PORT
 bot.setWebHook(domain+':443/bot'+token);
 // Matches /echo [whatever]
-bot.onText(/\/echo (.+)/, function (msg, match) {
+bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
   var fromId = msg.from.id;
-  var resp = match[1];
+  var resp = '';
+  var text = match[1];
+  var searchOptions = {
+    q:     text,
+    type:  "place",
+    center: "-12.8892120,-38.3121390"
+  };
+  graph.search(searchOptions, function(err, res) {
+    resp = res[0].name);
+    console.log(res); // {data: [{id: xxx, from: ...}, {id: xxx, from: ...}]}
+  });
   bot.sendMessage(fromId, resp);
 
 });
