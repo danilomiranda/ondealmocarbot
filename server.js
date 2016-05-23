@@ -19,20 +19,19 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
   var const SERVICE = 'Service: ';
   var const USER = 'User: ';
   switch (expression) {
-    case 'prod mvs':
+    case 'prod-mvs':
       bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
       bot.sendMessage(fromId, SERVICE+'mvs');
       bot.sendMessage(fromId, USER+'webapp');
       break;
-    case 'prod relo':
+    case 'prod-relo':
       bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
       bot.sendMessage(fromId, SERVICE+'relo');
       bot.sendMessage(fromId, USER+'webapp');
       break;
     default:
-      resp = 'Digite o ambiente (dese, homol, prod) seguido do service.';
+      bot.sendMessage(fromId, 'Digite o ambiente (dese, homol, prod) seguido do service.');
   }
-  bot.sendMessage(fromId, resp);
 });
 
 // Any kind of message
