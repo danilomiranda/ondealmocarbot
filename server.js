@@ -9,6 +9,7 @@ bot.onText(/\/echo (.+)/, function (msg, match) {
   var fromId = msg.from.id;
   var resp = match[1];
   bot.sendMessage(fromId, resp);
+  
 });
 
 bot.onText(/\/datasource (.+)/, function (msg, match) {
