@@ -1,15 +1,20 @@
 var TelegramBot = require('node-telegram-bot-api');
 
-var token = '227027346:AAFG7OOPZN-Da09WAB5MpDVTwWwPtZHZ2Gg';
-// Setup polling way
-var bot = new TelegramBot(token, {polling: true});
+var token = '222456534:AAEQr44fRiX1I6GXcxZYctTJ_25hp5gNJ7U';
+// See https://developers.openshift.com/en/node-js-environment-variables.html
+var port = process.env.OPENSHIFT_NODEJS_PORT;
+var host = process.env.OPENSHIFT_NODEJS_IP;
+var domain = process.env.OPENSHIFT_APP_DNS;
 
+var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
+// OpenShift enroutes :443 request to OPENSHIFT_NODEJS_PORT
+bot.setWebHook(domain+':443/bot'+token);
 // Matches /echo [whatever]
 bot.onText(/\/echo (.+)/, function (msg, match) {
   var fromId = msg.from.id;
   var resp = match[1];
   bot.sendMessage(fromId, resp);
-  
+
 });
 
 bot.onText(/\/datasource (.+)/, function (msg, match) {
