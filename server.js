@@ -14,7 +14,6 @@ bot.onText(/\/echo (.+)/, function (msg, match) {
 bot.onText(/\/datasource (.+)/, function (msg, match) {
   var fromId = msg.from.id;
   var expression = match[1];
-  var resp = '';
   var const HOST = 'Host: ';
   var const SERVICE = 'Service: ';
   var const USER = 'User: ';
@@ -32,6 +31,7 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
     default:
       bot.sendMessage(fromId, 'Digite o ambiente (dese, homol, prod) seguido do service.');
   }
+  bot.sendMessage(fromId, 'Digite o ambiente (dese, homol, prod) seguido do service.');
 });
 
 // Any kind of message
