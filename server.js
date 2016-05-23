@@ -1,9 +1,13 @@
 var TelegramBot = require('node-telegram-bot-api');
 
 var token = '227027346:AAFG7OOPZN-Da09WAB5MpDVTwWwPtZHZ2Gg';
+var port = process.env.OPENSHIFT_NODEJS_PORT;
+var host = process.env.OPENSHIFT_NODEJS_IP;
+var domain = process.env.OPENSHIFT_APP_DNS;
 // Setup polling way
-var bot = new TelegramBot(token, {polling: true});
+var bot = new TelegramBot(token, {webHook: {port: port, host: host,polling: true}});
 
+bot.setWebHook(domain+':443/bot'+token);
 // Matches /echo [whatever]
 bot.onText(/\/echo (.+)/, function (msg, match) {
   var fromId = msg.from.id;
@@ -11,27 +15,21 @@ bot.onText(/\/echo (.+)/, function (msg, match) {
   bot.sendMessage(fromId, resp);
 });
 
-bot.onText(/\/datasource (.+)/, function (msg, match) {
+bot.onText(/\/oi (.+)/, function (msg, match) {
   var fromId = msg.from.id;
   var expression = match[1];
-  var const HOST = 'Host: ';
-  var const SERVICE = 'Service: ';
-  var const USER = 'User: ';
+  var resp = '';
   switch (expression) {
-    case 'prod-mvs':
-      bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
-      bot.sendMessage(fromId, SERVICE+'mvs');
-      bot.sendMessage(fromId, USER+'webapp');
+    case 'quem sou eu?':
+      resp = 'Um nerd sem demanda provavelmente.';
       break;
-    case 'prod-relo':
-      bot.sendMessage(fromId, HOST+'exa01.maquinadevendas.corp');
-      bot.sendMessage(fromId, SERVICE+'relo');
-      bot.sendMessage(fromId, USER+'webapp');
+    case 'como assim?':
+      resp = 'Marcio, arruma uma demanda para esse jovem.';
       break;
     default:
-      bot.sendMessage(fromId, 'Digite o ambiente (dese, homol, prod) seguido do service.');
+      resp = 'ninguem';
   }
-  bot.sendMessage(fromId, 'Digite o ambiente (dese, homol, prod) seguido do service.');
+  bot.sendMessage(fromId, resp);
 });
 
 // Any kind of message
@@ -41,7 +39,3 @@ bot.on('message', function (msg) {
   var photo = 'cats.png';
   bot.sendMessage(fromId, 'teste');
 });
-
-function sendMessageCuston(chatId, label, info){
-  bot.sendMessage(chatId, label+info);
-}
