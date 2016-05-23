@@ -17,13 +17,13 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
   var resp = '';
   switch (expression) {
     case 'quem sou eu?':
-      resp = 'Um nerd sem demanda provavelmente.'
+      resp = 'Um nerd sem demanda provavelmente.';
       break;
     case 'como assim?':
-      resp = 'Marcio, arruma uma demanda para esse jovem.'
+      resp = 'Marcio, arruma uma demanda para esse jovem.';
       break;
     default:
-
+      resp = 'ninguem';
   }
   bot.sendMessage(fromId, resp);
 });
