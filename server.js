@@ -11,6 +11,23 @@ bot.onText(/\/echo (.+)/, function (msg, match) {
   bot.sendMessage(fromId, resp);
 });
 
+bot.onText(/\/datasource (.+)/, function (msg, match) {
+  var fromId = msg.from.id;
+  var expression = match[1];
+  var resp = '';
+  switch (expression) {
+    case 'quem sou eu?':
+      resp = 'Um nerd sem demanda provavelmente.'
+      break;
+    case 'como assim?':
+      resp = 'Marcio, arruma uma demanda para esse jovem.'
+      break;
+    default:
+
+  }
+  bot.sendMessage(fromId, resp);
+});
+
 // Any kind of message
 bot.on('message', function (msg) {
   var chatId = msg.chat.id;
@@ -18,4 +35,3 @@ bot.on('message', function (msg) {
   var photo = 'cats.png';
   bot.sendPhoto(chatId, photo, {caption: 'Lovely kittens'});
 });
-
