@@ -1,3 +1,3 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+# Onde Almocar Telegram Bot
+Telegram bot to help find places do have lunch.
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
