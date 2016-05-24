@@ -13,7 +13,7 @@ bot.setWebHook(domain+':443/bot'+token);
 // Matches /echo [whatever]
 bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
   var fromId = msg.from.id;
-  var resp = '';
+  var resp = 'msg default';
   var text = match[1];
   var searchOptions = {
     q:     text,
@@ -25,11 +25,12 @@ bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
     var resp = '';
     place.some(function(item) {
       console.log(item.name);
+      bot.sendMessage(fromId, item.name);
       resp = item.name;
       return true;
     });
   });
-  bot.sendMessage(fromId, resp);
+
 
 });
 
