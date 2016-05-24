@@ -49,6 +49,6 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
 bot.on('message', function (msg) {
   var chatId = msg.chat.id;
   // photo can be: a file path, a stream or a Telegram file_id
-  var photo = 'http://www.royalcanin.com.au/var/royalcanin/storage/images/media/images/2adulthood/11760568-1-eng-GB/2adulthood_large.jpg';
+  var photo = 'cat.jpg';
   bot.sendPhoto(chatId, photo, {caption: 'Lovely kittens'});
 });
