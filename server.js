@@ -23,6 +23,7 @@ bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
   graph.search(searchOptions, function(err, res) {
     var place = res.data;
     var resp = '';
+    shuffle(place);
     place.some(function(item) {
       console.log(item.name);
       bot.sendMessage(fromId, item.name);
@@ -58,3 +59,22 @@ bot.on('message', function (msg) {
   //var photo = 'cat.jpg';
   //bot.sendPhoto(chatId, photo, {caption: 'Lovely kittens'});
 });
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
