@@ -1,12 +1,12 @@
 var TelegramBot = require('node-telegram-bot-api');
 var graph = require('fbgraph');
-graph.setAccessToken("EAAQQh0kZBgikBAGZA3PntU3QNACHUJ96AIpbI0BhKE6nMtUeEmkrjdlR3x8HQj67vOZAiphop4FwLhP6IamsT5eibt5tpqlx0guL6Ie7ZBtZAzXbleXb1QexNMu19bE3mnpAYaHYvsdlXZAFwKbqsakxQpdijzJvGkqJ6AvaJyAGPFQLy6x9Fs");
 var token = '222456534:AAEQr44fRiX1I6GXcxZYctTJ_25hp5gNJ7U';
 // See https://developers.openshift.com/en/node-js-environment-variables.html
 var port = process.env.OPENSHIFT_NODEJS_PORT;
 var host = process.env.OPENSHIFT_NODEJS_IP;
 var domain = process.env.OPENSHIFT_APP_DNS;
 
+graph.setAccessToken("EAAQQh0kZBgikBAGZA3PntU3QNACHUJ96AIpbI0BhKE6nMtUeEmkrjdlR3x8HQj67vOZAiphop4FwLhP6IamsT5eibt5tpqlx0guL6Ie7ZBtZAzXbleXb1QexNMu19bE3mnpAYaHYvsdlXZAFwKbqsakxQpdijzJvGkqJ6AvaJyAGPFQLy6x9Fs");
 var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
 // OpenShift enroutes :443 request to OPENSHIFT_NODEJS_PORT
 bot.setWebHook(domain+':443/bot'+token);
@@ -49,6 +49,6 @@ bot.onText(/\/datasource (.+)/, function (msg, match) {
 bot.on('message', function (msg) {
   var chatId = msg.chat.id;
   // photo can be: a file path, a stream or a Telegram file_id
-  var photo = 'cats.png';
+  var photo = 'http://www.royalcanin.com.au/var/royalcanin/storage/images/media/images/2adulthood/11760568-1-eng-GB/2adulthood_large.jpg';
   bot.sendPhoto(chatId, photo, {caption: 'Lovely kittens'});
 });
