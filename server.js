@@ -12,7 +12,7 @@ var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
 bot.setWebHook(domain+':443/bot'+token);
 // Matches /echo [whatever]
 bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
-  var fromId = msg.from.id;
+  var fromId = msg.chat.id;
   var resp = 'msg default';
   var text = match[1];
   var searchOptions = {
