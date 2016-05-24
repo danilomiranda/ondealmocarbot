@@ -6,7 +6,7 @@ var port = process.env.OPENSHIFT_NODEJS_PORT;
 var host = process.env.OPENSHIFT_NODEJS_IP;
 var domain = process.env.OPENSHIFT_APP_DNS;
 
-graph.setAccessToken("EAAQQh0kZBgikBAGZA3PntU3QNACHUJ96AIpbI0BhKE6nMtUeEmkrjdlR3x8HQj67vOZAiphop4FwLhP6IamsT5eibt5tpqlx0guL6Ie7ZBtZAzXbleXb1QexNMu19bE3mnpAYaHYvsdlXZAFwKbqsakxQpdijzJvGkqJ6AvaJyAGPFQLy6x9Fs");
+graph.setAccessToken("EAACEdEose0cBAKTaHz1RBpdj2mFhpem4gTZCChVUgyIa1ZAYGDHHLB1VnAPjERQRYLSrWg8wFQTNeZBpifW8Uv6WgFwvw1bY4WrmWh0jbSWY3m55o8buWSjhBfEgNkgG9vZAJmQptfT63ILrl56IFGeRvtKa8ixzAkqBqdWrOwZDZD");
 var bot = new TelegramBot(token, {webHook: {port: port, host: host}});
 // OpenShift enroutes :443 request to OPENSHIFT_NODEJS_PORT
 bot.setWebHook(domain+':443/bot'+token);
