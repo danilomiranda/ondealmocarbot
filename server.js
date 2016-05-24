@@ -22,6 +22,7 @@ bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
   };
   graph.search(searchOptions, function(err, res) {
     var place = res.data;
+    var resp = '';
     place.some(function(item) {
       console.log(item.name);
       resp = item.name;
