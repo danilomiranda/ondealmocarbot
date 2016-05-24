@@ -21,8 +21,12 @@ bot.onText(/\/queroalmocar (.+)/, function (msg, match) {
     center: "-12.8892120,-38.3121390"
   };
   graph.search(searchOptions, function(err, res) {
-    resp = res[0].name;
-    console.log(res); // {data: [{id: xxx, from: ...}, {id: xxx, from: ...}]}
+    var place = res.data;
+    place.some(function(item) {
+      console.log(item.name);
+      resp = item.name;
+      return true;
+    });
   });
   bot.sendMessage(fromId, resp);
 
